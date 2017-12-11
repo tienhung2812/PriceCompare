@@ -33,7 +33,7 @@ public class Smartphone {
 
 	JFrame frame;
 	//static JLabel img = new JLabel("");
-	static JLabel label1 = new JLabel("");
+
 	static JLabel price[] = new JLabel[3];
 	static JLabel display[] = new JLabel[3];
 	static JLabel hardware[] = new JLabel[9];
@@ -49,7 +49,7 @@ public class Smartphone {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Smartphone window = new Smartphone(1);
+					Smartphone window = new Smartphone(2);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -106,7 +106,7 @@ public class Smartphone {
 		// name for product
 		JLabel lblName= new JLabel(Manager.printProduct(ID).Name,SwingConstants.CENTER);
 		lblName.setForeground(Color.BLACK);
-		lblName.setFont(new Font("Times New Roman",Font.BOLD,30));
+		lblName.setFont(new Font("Times New Roman",Font.BOLD,20));
 		lblName.setBounds(70,50,500,300);
 		frame.getContentPane().add(lblName);
 		
@@ -119,9 +119,6 @@ public class Smartphone {
 		lblCompareSearchEngine.setBounds(280, 11, 540, 57);
 		frame.getContentPane().add(lblCompareSearchEngine);
 		
-		label1 = new JLabel("");
-		label1.setIcon(new ImageIcon("C:\\Users\\student\\eclipse-workspace\\img\\1.png"));
-		label1.setBounds(175, 11, 50, 50);
 		//tao label cua price
 
 			price[0]=new JLabel("Lazada Price: ");
@@ -149,7 +146,7 @@ public class Smartphone {
 
 			for(int j=0;j<9;j++) {
 				hard[j]=Manager.printProduct(ID).Spec[j];
-				System.out.println(hard[j]);
+				//System.out.println(hard[j]);
 			}
 //		}
 
@@ -169,7 +166,7 @@ public class Smartphone {
 			hardware[i].setBounds(900,70+45*i,200,200);
 			frame.getContentPane().add(hardware[i]);
 		}
-		frame.getContentPane().add(label1);
+
 		
 		frame.add(label);
 		frame.add(lblName);

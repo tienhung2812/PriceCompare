@@ -3,8 +3,6 @@ package Search;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 
 public class TGDD implements Search.Store {
 	private static final String searchLink = "https://www.thegioididong.com/tim-kiem?key=";
@@ -93,7 +91,7 @@ public class TGDD implements Search.Store {
 											para[0] = line;
 										}
 										// HDH
-										s = "HÄ�H:";
+										s = "HĐH:";
 										if (line.indexOf(s) > -1) {
 											line = line.substring(line.indexOf(s) + s.length() + 1, line.length());
 											para[1] = line;
@@ -102,7 +100,7 @@ public class TGDD implements Search.Store {
 										s = "CPU:";
 										if (line.indexOf(s) > -1) {
 											line = line.substring(line.indexOf(s) + s.length() + 1, line.length());
-											line = line.replaceAll("&#226;", "Ã¢");
+											line = line.replaceAll("&#226;", "â");
 											para[2] = line;
 
 										}
@@ -125,7 +123,7 @@ public class TGDD implements Search.Store {
 										s = "Camera:";
 										if (line.indexOf(s) > -1) {
 											line = line.substring(line.indexOf(s) + s.length() + 1, line.length());
-											line = line.replaceAll("v&#224;", "vÃ ");
+											line = line.replaceAll("v&#224;", "và");
 											para[5] = line;
 										}
 										// PIN
@@ -167,21 +165,14 @@ public class TGDD implements Search.Store {
 
 	public static boolean Search(String question) {
 		System.out.println("TGDD search: " + question);
+
 		String a[] = question.split(" ");
 		question = "";
 		for (int i = 0; i < a.length; i++) {
 			if (a[i].length() > 0)
 				question += a[i] + "+";
 		}
-		question = question.substring(0, question.length()-1);
-		try {
-			@SuppressWarnings("deprecation")
-			String a1 = URLEncoder.encode(question,java.nio.charset.StandardCharsets.UTF_8.toString());
-			question = a1;
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 		name = "";
 		price = "";
 		for (int i = 0; i < para.length; i++) {
@@ -190,7 +181,7 @@ public class TGDD implements Search.Store {
 		// question = question.substring(11,question.length());
 		System.out.println("------------------\n" + question + "\n----------------");
 		if (Analyze(question)) {
-			System.out.println("<b>Result"+name + "\n" + price + "\n" + url + "\n" + img+"</b>");
+			System.out.println(name + "\n" + price + "\n" + url + "\n" + img);
 			for (int i = 0; i < para.length; i++) {
 				if (para[i].indexOf(",") > -1)
 					para[i] = para[i].replaceAll(",", "");
@@ -202,8 +193,7 @@ public class TGDD implements Search.Store {
 	}
 
 	public static void main(String[] args) {
-		
-		Search("iphone");
+		Search("Asus Zenfone 4 Max Pro ZC554KL");
 
 	}
 

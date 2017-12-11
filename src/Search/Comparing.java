@@ -19,7 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class Compare {
+public class Comparing {
 
 	static JFrame frame;
 	public static Product a;
@@ -32,10 +32,11 @@ public class Compare {
 	static String Urlb[] = new String[3];
 	public static JLabel hardware[] = new JLabel[9];
 	public static JLabel hardware2[] = new JLabel[9];
-	static JLabel label;
-	static JLabel label2;
-	static JLabel lblImg1;
-	static JLabel lblImg2;
+
+	static JLabel lblImg1; 
+	
+
+	JLabel lblImg2;
 
 	public static void CompareAdd(Product SpCanAdd) {
 		if (count == 0) {
@@ -58,12 +59,7 @@ public class Compare {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Compare window = new Compare();
-//					Manager asdf = new Manager();
-//					a = Manager.printProduct(1);
-//					b = Manager.printProduct(2);
-					Design();
-
+					Comparing window = new Comparing();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -72,62 +68,65 @@ public class Compare {
 		});
 	}
 
-	public static void Design() {
+	public static void Design(Product a, Product b) throws MalformedURLException, IOException {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 1366, 768);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setForeground(Color.WHITE);
 
 		// create images label
+		for (int i = 0; i < 2; i++) {
+			ID = i + 1;
+			int id = ID;
 
-		Image img = null;
-		try {
+			Image img = null;
+			try {
 
-			URL url = new URL(Manager.printProduct(a.ID).Image);
-			img = ImageIO.read(url);
-			System.out.println(Manager.printProduct(a.ID).Name);
-		} catch (IOException e) {
-			e.printStackTrace();
+				URL url = new URL(Manager.printProduct(a.ID).Image);
+				img = ImageIO.read(url);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			Image imgb = null;
+			try {
+
+				URL urlb = new URL(Manager.printProduct(b.ID).Image);
+				imgb = ImageIO.read(urlb);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		
+			// create the hardware of the first product label
+			String[] hard = new String[9];
+
+			for (int j = 0; j < 9; j++) {
+				hard[j] = Manager.printProduct(a.ID).Spec[j];
+			}
+
+			hardware[0] = new JLabel("<html> Màn Hình:    " + " <font color='red'>" + hard[0] + "</font></html>");
+			hardware[1] = new JLabel("<html> Màu:    " + " <font color='red'>" + hard[1] + "</font></html>");
+			hardware[2] = new JLabel("<html> OS:    " + " <font color='red'>" + hard[2] + "</font></html>");
+			hardware[3] = new JLabel("<html> CPU:    " + " <font color='red'>" + hard[3] + "</font></html>");
+			hardware[4] = new JLabel("<html> RAM:    " + " <font color='red'>" + hard[4] + "</font></html>");
+			hardware[5] = new JLabel("<html> ROM:    " + " <font color='red'>" + hard[5] + "</font></html>");
+			hardware[6] = new JLabel("<html> CAMERA:    " + " <font color='red'>" + hard[6] + "</font></html>");
+			hardware[7] = new JLabel("<html> PIN:    " + " <font color='red'>" + hard[7] + "</font></html>");
+			hardware[8] = new JLabel("<html> SIM:    " + " <font color='red'>" + hard[8] + "</font></html>");
+
+			// }
+			// }
 		}
-		JLabel label = new JLabel(new ImageIcon(img));
-		label.setSize(400, 400);
 
-		Image imgb = null;
-		try {
-
-			URL urlb = new URL(Manager.printProduct(b.ID).Image);
-			imgb = ImageIO.read(urlb);
-			System.out.println(Manager.printProduct(b.ID).Name);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		JLabel label2 = new JLabel(new ImageIcon(imgb));
-		label2.setSize(1200, 400);
-		frame.getContentPane().setLayout(null);
-		frame.add(label);
-		frame.add(label2);
-		
-		
-		// create the hardware of the first product label
-		String[] hard = new String[9];
-		for (int j = 0; j < 9; j++) {
-			hard[j] = Manager.printProduct(a.ID).Spec[j];
-		}
-
-		hardware[0] = new JLabel("<html> Màn Hình:    " + " <font color='red'>" + hard[0] + "</font></html>");
-		hardware[1] = new JLabel("<html> Màu:    " + " <font color='red'>" + hard[1] + "</font></html>");
-		hardware[2] = new JLabel("<html> OS:    " + " <font color='red'>" + hard[2] + "</font></html>");
-		hardware[3] = new JLabel("<html> CPU:    " + " <font color='red'>" + hard[3] + "</font></html>");
-		hardware[4] = new JLabel("<html> RAM:    " + " <font color='red'>" + hard[4] + "</font></html>");
-		hardware[5] = new JLabel("<html> ROM:    " + " <font color='red'>" + hard[5] + "</font></html>");
-		hardware[6] = new JLabel("<html> CAMERA:    " + " <font color='red'>" + hard[6] + "</font></html>");
-		hardware[7] = new JLabel("<html> PIN:    " + " <font color='red'>" + hard[7] + "</font></html>");
-		hardware[8] = new JLabel("<html> SIM:    " + " <font color='red'>" + hard[8] + "</font></html>");
-		
-		
-		for(int j=0;j<9;j++) {
-			hardware[j].setBounds(100,220+30*j,250,200);
-			frame.getContentPane().add(hardware[j]);
+		for (int i = 0; i < hardware.length; i++) {
+			hardware[i].setBounds(400 + 50 * i, 600, 50, 50);
+			frame.getContentPane().add(hardware[i]);
 		}
 
 		// create the hardware of the second product label
 		String[] hard2 = new String[9];
+
 		for (int j = 0; j < 9; j++) {
 			hard2[j] = Manager.printProduct(b.ID).Spec[j];
 		}
@@ -141,19 +140,21 @@ public class Compare {
 		hardware2[6] = new JLabel("<html> CAMERA:    " + " <font color='red'>" + hard2[6] + "</font></html>");
 		hardware2[7] = new JLabel("<html> PIN:    " + " <font color='red'>" + hard2[7] + "</font></html>");
 		hardware2[8] = new JLabel("<html> SIM:    " + " <font color='red'>" + hard2[8] + "</font></html>");
-		
-		
-		for(int j=0;j<9;j++) {
-			hardware2[j].setBounds(500,220+30*j,250,200);
-			frame.getContentPane().add(hardware2[j]);
+
+		// }
+		// }
+		for (int i = 0; i < 9; i++) {
+			hardware2[i].setBounds(600 + 50 * i, 700, 50, 50);
+			frame.getContentPane().add(hardware2[i]);
 		}
+
 
 	}
 
 	/**
 	 * Create the application.
 	 */
-	public Compare() {
+	public Comparing() {
 		initialize();
 
 	}
@@ -162,7 +163,6 @@ public class Compare {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1366, 738);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -193,18 +193,15 @@ public class Compare {
 		lblCompareSearchEngine.setBounds(10, 11, 540, 57);
 		frame.getContentPane().add(lblCompareSearchEngine);
 
-		// Add images label
+		//Add images label
 		lblImg1 = new JLabel("");
 		lblImg1.setBounds(100, 300, 200, 200);
-
+		
 		lblImg2 = new JLabel("");
-		lblImg2.setBounds(100, 500, 200, 200);
-
+		lblImg2.setBounds(300, 500, 200, 200);
+		
 		frame.getContentPane().add(lblImg1);
 		frame.getContentPane().add(lblImg2);
-
-		// Label for hardware
-		
 
 	}
 

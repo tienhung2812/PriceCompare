@@ -20,6 +20,7 @@ public class Manager implements Tools {
 		if(product.size()==0) {
 			Status = "Loading Error";
 		}
+		product_num=product.size();
 		System.out.println(Status);
 		System.out.println("Search Time: "+SearchTime + " Second");
 	}
@@ -58,7 +59,7 @@ public class Manager implements Tools {
 
 	private static void Initialize() {
 		product.clear();
-		if ((product_num = lineCount() - 1) > 0)
+		if ((product_num = lineCount()-1) > 0)
 			for (int i = 0; i < product_num; i++) {
 				product.add(new Product(i + 1));
 			}
@@ -85,9 +86,9 @@ public class Manager implements Tools {
 					found = true;
 				if (found) {
 					if (product_num > 1)
-						Status = ("Found " + product_num + " products in "+SearchTime+" seconds");
+						Status = ("Found " + product_num + " products ");
 					else
-						Status = ("Found " + product_num + " product in "+SearchTime+" seconds");
+						Status = ("Found " + product_num + " product ");
 					break;
 				}
 				else
@@ -123,9 +124,9 @@ public class Manager implements Tools {
 					found = true;
 				if (found) {
 					if (product_num > 1)
-						Status = ("Found " + product_num + " products in "+SearchTime+" seconds");
+						Status = ("Found " + product_num + " products ");
 					else
-						Status = ("Found " + product_num + " product in "+SearchTime+" seconds");
+						Status = ("Found " + product_num + " product ");
 					break;
 				}
 				else
@@ -155,7 +156,7 @@ public class Manager implements Tools {
 //		}
 //		
 		//Search
-		if (Search("",1,5)) {
+		if (Search("",1,6)) {
 			for (int i = 1; i <= product_num; i++)
 				System.out.println(printProduct(i).Name);
 			

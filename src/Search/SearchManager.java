@@ -58,8 +58,7 @@ public class SearchManager implements Tools {
 								+ FPT.url + "," + b[5] + "," + TGDD.price + "," + FPT.price + "," + TGDD.img);
 					}
 				} else {
-					boolean a1=TGDD.Search(searchString), b1 = FPT.Search(searchString);
-					search = a1 && b1;
+					search = (TGDD.Search(searchString)) && FPT.Search(searchString);
 					if (search) {
 						System.out.println(a[0] + a[1]);
 						if (TGDD.price.length() * FPT.price.length() > 0) {
@@ -71,7 +70,7 @@ public class SearchManager implements Tools {
 						}
 
 					} else {
-						System.out.println("Can't find!\nTGDD:"+a1+"\tDDTM:"+b1);
+						System.out.println("Can't find!");
 						search = false;
 					}
 				}
