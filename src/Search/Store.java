@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public interface Store {
+public class Store {
 	public static String DATAFILE = "./HtmlSource.data";
 	@SuppressWarnings("resource")
 	static boolean getUrl(String urlstring) {
@@ -85,4 +85,5 @@ public interface Store {
 		return true;
 	}
 
-}
+
+}	

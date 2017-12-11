@@ -6,14 +6,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Lazada implements Search.Store {
+public class Lazada extends Search.Store implements Search.Online{
 	private static String searchLink = "http://www.lazada.vn/dien-thoai-di-dong/?scs=1&sc=EaYR&q="; // default search
 	public static List<String> SearchProducts = new ArrayList<String>(); // List
 	private static String criteria = "<div class=\"c-product-list  c-product-list_view_grid c-product-list_justify_space-between"; // Critria
 	private static double SearchTime;
 	
 	private static int colormodel(String color) {
-		String c[] = { "Trắng", "Vàng", "Đen" };
+		String c[] = { "Tráº¯ng", "VÃ ng", "Ä�en" };
 		for (int i = 0; i < c.length; i++) {
 			if (color.indexOf(c[i]) > -1)
 				return color.indexOf(c[i]);

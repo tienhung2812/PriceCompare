@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class TGDD implements Search.Store {
+public class TGDD extends Search.Store implements Search.Online{
 	private static final String searchLink = "https://www.thegioididong.com/tim-kiem?key=";
 	private static final String noresult = "<strong class=\"noresult\">";
 	private static final String result = "<div class=\"countresult\">";
@@ -20,7 +20,7 @@ public class TGDD implements Search.Store {
 		String ProductUrl = searchLink + question;
 		if (ProductUrl.toLowerCase().indexOf("thegioididong") != -1) {
 			System.out.println("Starting...");
-			if (Store.getUrl(ProductUrl)) {
+			if (getUrl(ProductUrl)) {
 				System.out.println("Connected");
 
 			} else {
@@ -194,7 +194,6 @@ public class TGDD implements Search.Store {
 
 	public static void main(String[] args) {
 		Search("Asus Zenfone 4 Max Pro ZC554KL");
-
 	}
 
 }

@@ -5,29 +5,15 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class FPT implements Search.Store {
+public class FPT extends Search.Store implements Search.Online{
 	private static final String searchLink = "https://fptshop.com.vn/tim-kiem/";
 	private static final String ListSearch = "<!--ListSearch-->";
 	@SuppressWarnings("unused")
 	private static final String result = "<div class=\"countresult\">";
-
+	
 	public static String price = "", name = "" ,url = "";
 
-	private static boolean checkName(String product, String search) {
-		String a[] = product.split(" ");
-		String b[] = search.split(" ");
-		if(a.length*b.length<=0)
-			return false;
-		for (int i = 0; i < b.length; i++) {
-			for (int j = 0; j < a.length; j++) {
-				if (a[j].length() > 0) {
-					if (b[i].indexOf(a[j]) > -1)
-						return true;
-				}
-			}
-		}
-		return false;
-	}
+
 
 	@SuppressWarnings("resource")
 	private static boolean Analyze(String question) {
@@ -72,7 +58,7 @@ public class FPT implements Search.Store {
 								//Search name and price
 								if (line.indexOf("<h3 class=\"mf-plti-name\">") > -1) {
 									name = line.substring(line.indexOf(">") + 1, line.indexOf("</"));
-									if (checkName(name, question)) {
+									if (Online.checkName(name, question)) {
 										System.out.println(name);
 										found = true;
 										line = bf.readLine();
