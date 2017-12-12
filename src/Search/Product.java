@@ -10,21 +10,21 @@ public class Product implements Tools{
 	public static String DATAPRODUCTCSV = "./product_data.csv";
 
 	// Define distributors order
-	public static final int LAZADA = 0;
-	public static final int TGDD = 1;
-	public static final int FPT = 2;
+	static final int LAZADA = 0;
+	static final int TGDD = 1;
+	static final int FPT = 2;
 
 	// Define Spec order
-	public static final int SCREEN = 0;
-	public static final int COLOR = 1;
-	public static final int OS = 2;
-	public static final int CPU = 3;
-	public static final int RAM = 4;
-	public static final int ROM = 5;
-	public static final int CAMERA = 6;
-	public static final int PIN = 7;
-	public static final int SIM = 8;
-	public static final int TYPE = 9;
+	static final int SCREEN = 0;
+	static final int COLOR = 1;
+	static final int OS = 2;
+	static final int CPU = 3;
+	static final int RAM = 4;
+	static final int ROM = 5;
+	static final int CAMERA = 6;
+	static final int PIN = 7;
+	static final int SIM = 8;
+	static final int TYPE = 9;
 	
 	// Define CVS Column No
 	static final int CSV_ID = 0;

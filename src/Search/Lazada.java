@@ -21,7 +21,7 @@ public class Lazada extends Search.Store implements Search.Online{
 		return -1;
 	}
 
-	public static boolean Analyze(String question) {
+	static boolean Analyze(String question) {
 		question = question.replaceAll(" ", "+");
 		String ProductUrl = searchLink + question;
 
@@ -90,7 +90,7 @@ public class Lazada extends Search.Store implements Search.Online{
 
 	}
 
-	public static void Classify() {
+	static void Classify() {
 		String name = null, rom = null, color = null, type = null, a;
 		int end;
 
